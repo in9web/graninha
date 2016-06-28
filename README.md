@@ -2,6 +2,9 @@
 
 Pequeno gerenciador financeiro. Sugestões e melhorias contato@in9web.com
 
+# Preview / Screenshot
+
+![Preview Graninha](https://raw.githubusercontent.com/in9web/graninha/master/preview.jpg)
 # Como instalar
 
 Basta executar os seguintes comandos: 
