@@ -1,0 +1,30 @@
+{% extends 'layout.twig' %}
+
+{% set page_title = 'Dashboard' %}
+
+{% block content %}
+    
+    <h2>Dashboard</h2>
+
+    {{show_message('error', '<div class="alert alert-warning">', '</div>')}}
+    {{show_message('ok', '<div class="alert alert-success">', '</div>')}}
+    
+    <div class="clearfix"></div>
+    
+    <div class="alert alert-info">
+        <h3 class="text-center">Bem-Vindo ao Dashboard</h3>
+    </div>
+    
+{% endblock %}
+
+{% block assets_css %}
+    
+{% endblock %}
+
+{% block assets_js %}
+<script>
+    jQuery(document).ready(function($){
+        
+    });
+</script>
+{% endblock %}

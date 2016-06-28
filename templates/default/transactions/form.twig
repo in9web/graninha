@@ -1,0 +1,153 @@
+{% extends 'layout.twig' %}
+
+{% set page_title = 'Transação' %}
+
+{% block content %}
+    
+    <h2>Transações</h2>
+
+    {{show_message('error', '<div class="alert alert-warning">', '</div>')}}
+    {{show_message('ok', '<div class="alert alert-success">', '</div>')}}
+    
+    <div class="clearfix"></div>
+    <div id="block-add-transation" class="">
+        
+        <!-- <h4>Nova Transação</h4> -->
+
+        <form id="frm-add-transaction" action="{{path_for('transaction_store')}}" method="POST">
+
+            <div class="col-md-6 col-lg-6">
+                    
+                <div class="form-group">
+                    <label for="">Descrição</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">...</span>
+                        <input type="text" class="form-control" name="description" placeholder="Descrição" value="{{transaction.description}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="">Data do Vencimento *</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <input type="date" class="form-control" name="due_date_at" placeholder="aaaa-mm-aa" autocomplete="off" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="">Valor *</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><small>R$</small></span>
+                        <input type="number" class="form-control" id="input_amount" name="amount" step="0.01" value="0.01" required>
+                        <a href="#" class="input-group-addon" id="amount_btn_inout" data-toggle="tooltip" title="Alterar valor para negativo/positivo (entrada/saida)">+/-</a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="">Favorecido</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input type="text" class="form-control" name="payee_name" placeholder="Favorecido">
+                    </div>
+                </div>
+                <div class="form-group hide">
+                    <label for="">Entrada/Saida *</label>
+                    <div class="input-group">
+                        <label class="input-group-addon" for="input_inout"><i class="fa fa-exchange"></i></label>
+                        <!-- <input type="checkbox" name="inout" class="bs-check-toggle" value="in"> -->
+                        <select class="form-control" id="input_inout" name="inout">
+                            <option value="out">Saida</option>
+                            <option value="in">Entrada</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="clearfix"></div>
+
+            <div class="col-md-12 col-lg-12">
+                <a href="#" class="btn_advanced_options btn btn-xs pull-right">Opções Avançadas</a>
+            </div>
+
+            <div class="clearfix"></div>
+            
+            <div class="frm_block_advanced hide">
+                <hr>
+                
+                <div class="col-md-6 col-lg-6">
+
+                    <div class="form-group">
+                        <label for="">Data do Pagamento</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            <input type="date" class="form-control" id="" name="payed_at" placeholder="aaaa-mm-aa" autocomplete="off">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <label for="">Categoria</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-tag"></i></span>
+                            <select class="form-control" id="input_category_id" name="category_id">
+                                <option value="1">Padrão</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Conta</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-tag"></i></span>
+                            <select class="form-control" id="input_account_id" name="account_id">
+                                <option value="1">Padrão</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="col-md-12 col-lg-12">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-save"></i> Salvar</button>
+                    <button type="button" class="btn btn-default frm_btn_cancel"><i class="fa fa-remove"></i> Cancelar</button>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+        </form>
+    </div>
+    
+{% endblock %}
+
+{% block assets_css %}
+    
+{% endblock %}
+
+{% block assets_js %}
+<script>
+    jQuery(document).ready(function($){
+        
+        // show/hide advanced options
+        $('.btn_advanced_options').click(function(e){
+            $('.frm_block_advanced').toggleClass('hide');
+        });
+
+        $('.frm_btn_cancel').click(function(e){
+            
+        });
+        
+        // convert amount value
+        $('#amount_btn_inout').click(function(e){
+            $('#input_amount').val($('#input_amount').val()*-1);
+        });
+
+    });
+</script>
+{% endblock %}

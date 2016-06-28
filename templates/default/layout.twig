@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>{{page_title}} - Graninha</title>
+
+    <!-- Bootstrap -->
+    <link href="{{template_url}}/assets/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{template_url}}/assets/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{template_url}}/assets/css/styles.css" rel="stylesheet">
+
+    {% block assets_css %}{% endblock %}
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <header id="header">
+        <div class="container hide">
+            <h1>
+                <span style="background-color: #67CCA4;border-radius:4px; padding:5px 10px; color:#fff">
+                    <i class="glyphicon glyphicon-piggy-bank" style="color: #fff;"></i> 
+                    Graninha
+                </span>
+            </h1>
+        </div>
+        {% if not single_page %}
+        {% include 'header_menu.twig' %}
+        {% endif %}
+        
+    </header>
+
+    <section id="content">
+
+        <div class="container">
+            
+            {% block content %}{% endblock %}
+
+        </div>
+        
+    </section>
+
+    <footer id="footer">
+    
+        {% block footer_menu %}{% endblock %}
+        
+        {% if not single_page %}
+        <div class="container">
+            <p class="text-center">Desenvolvido por by <a href="http://in9web.com" target="_blank">[in9]Web</a></p>
+        </div>
+        {% endif %}
+        
+    </footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{{template_url}}/assets/js/jquery-1.11.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{template_url}}/assets/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+    <script src="{{template_url}}/assets/js/cidades-estados-1.2-utf8.js"></script>
+    
+    <!-- colorbox -->
+    <link href="{{template_url}}/assets/colorbox/example4/colorbox.css" rel="stylesheet">
+    <script src="{{template_url}}/assets/colorbox/jquery.colorbox-min.js"></script>
+    <script src="{{template_url}}/assets/colorbox/i18n/jquery.colorbox-pt-BR.js"></script>
+    <script>
+    // start bootstrap scripts
+    jQuery(document).ready(function($) {
+        // tooltip
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    </script>
+    <script>
+    jQuery(document).ready(function($) {
+        $('.colorbox').colorbox();
+        $(".colorbox-iframe").each(function(){
+            var w = $(this).data('cb-width') ? $(this).data('cb-width') : '80%';
+            var h = $(this).data('cb-height') ? $(this).data('cb-height') : '80%';
+            $(this).colorbox({iframe:true, width:w, height:h});
+        });
+        $(".colorbox-inline").each(function(){
+            var w = $(this).data('cb-width') ? $(this).data('cb-width') : '80%';
+            var h = $(this).data('cb-height') ? $(this).data('cb-height') : '80%';
+            $(this).colorbox({inline:true, width:w, height:h});
+        });
+    });
+    </script>
+    
+    <!-- datepicker -->    
+    <link href="{{template_url}}/assets/jquery-ui-1.11.4/themes/cupertino/jquery-ui.min.css" rel="stylesheet">
+    <script src="{{template_url}}/assets/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+    <script>
+    jQuery(document).ready(function($) {
+        var datepicker_regional_ptbr = {
+            closeText: 'Fechar',
+            prevText: '&#x3C;Anterior',
+            nextText: 'Próximo&#x3E;',
+            currentText: 'Hoje',
+            monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
+            'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+            monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun',
+            'Jul','Ago','Set','Out','Nov','Dez'],
+            dayNames: ['Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado'],
+            dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
+            dayNamesMin: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
+            weekHeader: 'Sm',
+            //dateFormat: 'dd/mm/yy',
+            dateFormat: 'yy-mm-dd',
+            firstDay: 0,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $("input[type=date], .bs-datepicker").each(function(){
+
+            $(this).attr('type', 'text').datepicker({
+                dateFormat: 'yy-mm-dd',
+                changeMonth: true,
+                changeYear: true
+                /*defaultDate: '-30y'*/
+            }).datepicker( "option", datepicker_regional_ptbr );
+        })
+    });
+    </script>
+
+    {% block assets_js %}{% endblock %}
+
+</body>
+</html>

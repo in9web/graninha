@@ -1,0 +1,7 @@
+/vendor/
+/logs/*
+!/logs/README.md
+storage/
+config.php
+composer.lock
+database/database.sqlite
